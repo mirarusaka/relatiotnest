@@ -18,7 +18,8 @@ class Board extends Model
         'message' => 'required'
     );
 
-    //ゲッター 何を取っているかわからない
+    //ゲッター これがviewファイルに呼び出せる。
+    //この場合、呼び出すと『id：タイトル』となる。
     public function getData()
     {
         return $this->id . ': ' . $this->title;
