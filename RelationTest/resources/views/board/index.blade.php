@@ -10,12 +10,13 @@
 @section('content')
     <table>
         <tr><th>Data</th></tr>
-        @foreach ($item as $item)
+        @foreach ($items as $item)
             <tr>
                 <td>{{ $item->getData() }}</td>
             </tr>
         @endforeach
     </table>
+    <a href={{ route('board.add') }}>一覧追加へ</a>
 @endsection
 
 @section('footer')

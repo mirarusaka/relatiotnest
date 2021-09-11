@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <form action="board/add" method="post">
+    <form action={{ route('board.add.redirect') }} method="post">
         <table>
             @csrf
             <tr><th>person id: </th><td><input type="number" name="person_id"></td></tr>
@@ -17,6 +17,7 @@
             <tr><th></th><td><input type="submit" value="send"></td></tr>
         </table>
     </form>
+    <a href="/">戻る</a>
 @endsection
 
 @section('footer')

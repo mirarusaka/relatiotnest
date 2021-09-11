@@ -15,5 +15,5 @@ use App\Http\Controllers\BoardController;
 */
 
 Route::get('/', [BoardController::class, 'index']);
-Route::get('board/add', [BoardController::class], 'add');
-Route::post('board/add', [BoardController::class], 'create');
+Route::get('board/add', [BoardController::class, 'add'])->name('board.add');
+Route::post('board/add', [BoardController::class, 'create'])->name('board.add.redirect');

@@ -23,6 +23,6 @@ class BoardController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $board->fill($form)->save();
-        return redirect('/board');
+        return redirect('/');
     }
 }
