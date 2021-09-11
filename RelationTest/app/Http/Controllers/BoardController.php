@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BoardController extends Controller
 {
     public function index(Request $request){
-        $items = Board::all();
+        $items = Board::all(); //インスタンス生成している
         return view('board.index', ['items' => $items]);
     }
 
