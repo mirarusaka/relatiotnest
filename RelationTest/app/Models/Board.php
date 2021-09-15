@@ -10,7 +10,7 @@ class Board extends Model //勝手にテーブルと連携してくれている
     use HasFactory;
 
     protected $guarded = array('id'); //更新不可のカラムを指定
-    protected $table = 'test'; //テーブルを手動で指定
+    // protected $table = 'test'; //テーブルを手動で指定
 
     //バリデーションルールを指定
     public static $rules = array(
