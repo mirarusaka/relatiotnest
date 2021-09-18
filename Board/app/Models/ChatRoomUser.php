@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ChatRoomUser extends Model
 {
     use HasFactory;
+    protected $table = 'chat_room_users';
 
     public function chatRoomId(){
         return $this->belongsTo(ChatRoomUser::class, 'chat_room_id', 'id');
