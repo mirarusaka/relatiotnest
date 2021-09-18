@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ChatRoomUser extends Model
 {
     use HasFactory;
+
+    public function chatRoomId(){
+        return $this->belongsTo(ChatRoomUser::class, 'chat_room_id', 'id');
+    }
+
+    public function chatRoomUserId(){
+        return $this->belongsTo(Person::class, 'user_id', 'id');
+    }
+
 }
