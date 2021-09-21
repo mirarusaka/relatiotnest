@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index(){
         $person = Person::all();
 
-        return view('home', compact('person'));
+        return view('index', compact('person'));
     }
 
     public function showUser(){
