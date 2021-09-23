@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Person;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,8 +24,16 @@ class HomeController extends Controller
         return view('index', compact('person'));
     }
 
-    public function showUser(){
+    public function showUser($name){
+        $data = $name;
+        return view('showUser', compact('data'));
+    }
 
-        return view('showUser');
+    public function followUser($name){
+        //ログイン者のユーザIDを取得
+        $user = Auth::id();
+        $data = $name;
+
+        return view('showUser', compact('data', 'user'));
     }
 }

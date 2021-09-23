@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group(function(){
-    Route::get('/', [HomeController::class, 'index']);
-    Route::get('/{name}', [HomeController::class, 'showUser'])->name('user');
+    Route::get('/home', [HomeController::class, 'index'])->name('index');
+    Route::get('/user/{name}', [HomeController::class, 'showUser'])->name('user');
+    Route::post('/user/{name}', [HomeController::class, 'followUser'])->name('follow');
 });
