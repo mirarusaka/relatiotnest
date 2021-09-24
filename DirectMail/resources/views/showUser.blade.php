@@ -4,9 +4,10 @@
 @section('content')
     <h3>ユーザプロフィール</h3>
     名前
-    {{ $data }}
-    <form action="{{ route('follow', ['name' => $data]) }}" method="POST">
+    {{ $person }}
+    <form action="{{ route('follow', ['name' => $person]) }}" method="POST">
         @csrf
+        @if()
         <input type="submit" value="フォローする">
     </form>
 @endsection
