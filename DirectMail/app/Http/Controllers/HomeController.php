@@ -28,11 +28,31 @@ class HomeController extends Controller
     }
 
     public function showUser($name){
+        $you = 0;
+        $me = 0;
+        $same = 0;
+        $other = Person::where('name', '=', $name)->first();
+        $user = Auth::id();
         $person = $name;
-        return view('showUser', compact('person'));
-    }
+        $followYou = Reaction::where('to_user_id', '=', $other->id)
+            ->where('from_user_id', '=', $user)->first();
+        $followMe = Reaction::where('to_user_id', '=', $user)
+            ->where('from_user_id', '=', $other->id)->first();
 
-    public function followUser($name){
+        if($followYou != null){
+            $you = 1;
+        }
+        if($followMe != null){
+            $me = 1;
+        }
+        if($other->id == $user){
+            $same = 1;
+        }
+
+        return view('showUser', compact('person', 'you', 'me', 'same'));
+    }
+    //TODO ボタンアクションの値で、内容を変更
+    public function followUser(Request $request, $name){
         //ログイン者のユーザIDを取得
         $user = Auth::id();
         $data = Person::where('name', '=', $name)->first();
