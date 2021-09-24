@@ -9,8 +9,10 @@ class Reaction extends Model
 {
     use HasFactory;
     protected $table = 'reactions';
+    protected $fillable = ['to_user_id', 'from_user_id'];
     public $incrementing = false;  // インクリメントIDを無効化
     public $timestamps = false; // update_at, created_at を無効化
+
 
     public function toUserId()
     {

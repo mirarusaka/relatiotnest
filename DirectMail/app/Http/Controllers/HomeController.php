@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Person;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Reaction;
 
 class HomeController extends Controller
 {
@@ -32,7 +33,19 @@ class HomeController extends Controller
     public function followUser($name){
         //ログイン者のユーザIDを取得
         $user = Auth::id();
-        $data = $name;
+        $data = Person::where('name', '=', $name)->first();
+
+        // dd($data->id);
+
+        if($user == $data->id){
+            $person = Person::all();
+            return view('home', compact('person'));
+        }
+
+        $reaction = new Reaction();
+        $reaction->to_user_id = $data->id;
+        $reaction->from_user_id = $user;
+        $reaction->save();
 
         return view('showUser', compact('data', 'user'));
     }
