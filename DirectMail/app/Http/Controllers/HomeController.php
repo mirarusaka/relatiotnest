@@ -31,7 +31,9 @@ class HomeController extends Controller
         $you = 0;
         $me = 0;
         $same = 0;
+        //表示したユーザのデータを表示
         $other = Person::where('name', '=', $name)->first();
+        //ログインユーザIDを照会
         $user = Auth::id();
         $person = $name;
         $followYou = Reaction::where('to_user_id', '=', $other->id)

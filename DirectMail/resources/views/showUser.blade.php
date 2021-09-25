@@ -10,12 +10,14 @@
     {{ $person }}
     <form action="{{ route('follow', ['name' => $person]) }}" method="POST">
         @csrf
-        @if($you == 0)
-            <input type="hidden" name="action" value="follow">
-            <input type="submit" value="フォロー">
-        @else
-            <input type="hidden" name="action" value="unfollow">
-            <input type="submit" value="フォロー解除">
+        @if($same == 0)
+            @if($you == 0)
+                <input type="hidden" name="action" value="follow">
+                <input type="submit" value="フォロー">
+            @else
+                <input type="hidden" name="action" value="unfollow">
+                <input type="submit" value="フォロー解除">
+            @endif
         @endif
     </form>
 
