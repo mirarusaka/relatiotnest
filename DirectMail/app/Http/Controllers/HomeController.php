@@ -27,15 +27,14 @@ class HomeController extends Controller
         return view('index', compact('person'));
     }
 
-    public function showUser($name){
+    public function showUser($id){
         $you = 0;
         $me = 0;
         $same = 0;
         //表示したユーザのデータを表示
-        $other = Person::where('name', '=', $name)->first();
+        $other = Person::where('id', '=', $id)->first();
         //ログインユーザIDを照会
         $user = Auth::id();
-        $person = $name;
         $followYou = Reaction::where('to_user_id', '=', $other->id)
             ->where('from_user_id', '=', $user)->first();
         $followMe = Reaction::where('to_user_id', '=', $user)
@@ -51,14 +50,14 @@ class HomeController extends Controller
             $same = 1;
         }
 
-        return view('showUser', compact('person', 'you', 'me', 'same'));
+        return view('showUser', compact('other', 'you', 'me', 'same'));
     }
     //TODO ボタンアクションの値で、内容を変更
-    public function followUser(Request $request, $name){
+    public function followUser(Request $request, $id){
         //ログイン者のユーザIDを取得
         $user = Auth::id();
-        $data = Person::where('name', '=', $name)->first();
-        $person = $name;
+        $data = Person::where('name', '=', $id)->first();
+        $person = $id;
 
         // dd($data->id);
 
